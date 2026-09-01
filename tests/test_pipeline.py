@@ -145,3 +145,25 @@ def test_baseline_mode_runs_without_model_calls(tmp_path):
     assert costs["totals"]["calls"] == 0 and summary["baseline"] is True
     items = load_json(out / "work_items.json")
     assert any(i["key"] == "V2205" for i in items)  # lexicon still catches the tag
+
+
+def test_digest_shows_visibility_from_first_mention(run):
+    """The non-hazard lane's digest: every work item, visible from its first
+    mention, with its state. This is the intervention-window evidence."""
+    out, _ = run
+    digest = load_json(out / "digest.json")
+    v = next(d for d in digest if d["key"] == "V2205")
+    assert v["first_mention_id"] == "m3"
+    assert v["first_mention_ts"].endswith("06:30:00+00:00")
+    assert v["state"] == "closed_by_amendment"
+    assert v["minutes_visible"] >= 0
+
+
+def test_handover_pack_lists_open_items_per_boundary(run):
+    """The pack uses the same open-at-boundary predicate as the handover
+    escalation. In the tiny fixture the amendment resolved V2205 at 07:10, so
+    the 18:00 pack is empty: the system working, recorded."""
+    out, _ = run
+    pack = load_json(out / "handover_pack.json")
+    entry = next(p for p in pack if p["boundary_ts"].endswith("18:00:00+00:00"))
+    assert entry["open_items"] == []

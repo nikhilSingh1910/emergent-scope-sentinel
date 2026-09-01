@@ -64,6 +64,8 @@ def compute_metrics(run_dir: Path, data_dir: Path, gold_path: Path,
             "wall_clock_minutes_from_first_signal":
                 round((ts(first) - ts(order[0])).total_seconds() / 60, 1),
             "caught_before_execution": ts(first) < ts(primary["execution_id"]),
+            "intervention_window_minutes":
+                round((ts(primary["execution_id"]) - ts(first)).total_seconds() / 60, 1),
         }
     else:
         catch[primary["case"]] = {"caught": False}

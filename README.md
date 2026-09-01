@@ -65,8 +65,10 @@ detector is never graded on questions written after peeking at its answers.
 state), `escalations.json` (hazard page with the parallel duty-HSE
 addressee, execution-intent and handover escalations), `covered_log.json`
 (every suppression, with the identifier's literal span in the raw message:
-the zero-suppression receipt), `trace.jsonl`, `costs.json`,
-`run_summary.json`.
+the zero-suppression receipt), `digest.json` (every work item with when it
+became visible and its state: the non-hazard lane's daily view),
+`handover_pack.json` (the items still open at each shift boundary),
+`trace.jsonl`, `costs.json`, `run_summary.json`.
 
 The metrics report scores the run against gold: catch and latency for the
 plant, recall against the planted messages, lexicon-only baseline delta,
@@ -95,6 +97,12 @@ after recording fails loudly. From that file:
   mention, which on this dataset is the execution message itself (jb6);
   the 5-minute pin is measured from that trigger message on the replayed
   timeline.
+- The intervention window is measured, not asserted: the valve item was
+  visible from jb1 (08:05) and execution began at jb6 (14:40), 395
+  minutes later, all on the replayed timeline. The digest shows it from
+  08:05; the 18:00 handover pack carries M-140 and K-7100 and not the
+  valve, because the valve was dispositioned at 15:30, which is the
+  system working.
 - **Precision on the noise half: 0.909.** The one false positive is n07,
   the worn hydraulic hose swapped from spares: replacement-in-kind, the
   exact MOC boundary case, and the same call the baseline makes.

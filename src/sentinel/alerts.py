@@ -13,6 +13,12 @@ HAZARD_ADDRESSEES = ["duty_hse", "supervisor"]
 SUPERVISOR_ONLY = ["supervisor"]
 
 
+def open_at(boundary: datetime, open_ts: datetime, done_ts: datetime | None) -> bool:
+    """The one open-at-boundary predicate, shared by the handover escalation and
+    the handover pack so the two can never disagree."""
+    return boundary > open_ts and (done_ts is None or done_ts > boundary)
+
+
 def route(items: list[WorkItem], times: dict[str, datetime],
           boundaries: list[datetime], resolved: dict[str, datetime]) -> list[Escalation]:
     out: list[Escalation] = []
@@ -36,7 +42,7 @@ def route(items: list[WorkItem], times: dict[str, datetime],
         open_ts = times[mentions[0].candidate.message_id]
         done_ts = resolved.get(wi.key)
         for boundary in sorted(boundaries):  # every handover until resolved
-            if boundary > open_ts and (done_ts is None or done_ts > boundary):
+            if open_at(boundary, open_ts, done_ts):
                 out.append(Escalation(item_id=wi.item_id, lane="handover",
                                       addressees=SUPERVISOR_ONLY, ts=boundary))
     return out

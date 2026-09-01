@@ -11,7 +11,7 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from sentinel.alerts import route
+from sentinel.alerts import open_at, route
 from sentinel.config import MAX_ATTEMPTS, PRICES_PER_MTOK
 from sentinel.diff import diff
 from sentinel.guards import load_patterns, scan
@@ -166,8 +166,8 @@ def run_pipeline(job_dir: Path, standards_dir: Path, out_dir: Path, *,
 
     items = cluster(uncovered_all)
     times = {m.id: m.ts for m in messages}
-    escalations = route(items, times, _boundaries(messages, pkg.shift_end_hours_utc),
-                        resolved)
+    boundaries = _boundaries(messages, pkg.shift_end_hours_utc)
+    escalations = route(items, times, boundaries, resolved)
     states = {}
     for wi in items:
         evs = list(events_by_key.get(wi.key, []))
@@ -179,6 +179,33 @@ def run_pipeline(job_dir: Path, standards_dir: Path, out_dir: Path, *,
         evs.sort(key=lambda e: (e["ts"], e["type"] != "notify"))
         states[wi.item_id] = fold(evs)
 
+    # The non-hazard lane's artifacts: the digest (every item, visible from its
+    # first mention) and the handover pack (open items per shift boundary, by
+    # the same predicate the handover escalation uses).
+    end_ts = messages[-1].ts if messages else None
+    opened = {wi.item_id: min(times[u.candidate.message_id] for u in wi.mentions)
+              for wi in items}
+    digest = [{
+        "item_id": wi.item_id, "key": wi.key, "hard_keyed": wi.hard_keyed,
+        "state": states[wi.item_id],
+        "first_mention_id": min(wi.mentions,
+                                key=lambda u: (times[u.candidate.message_id],
+                                               u.candidate.message_id)
+                                ).candidate.message_id,
+        "first_mention_ts": opened[wi.item_id].isoformat(),
+        "hazard": any(u.guard.hazard_hits for u in wi.mentions),
+        "minutes_visible": round((end_ts - opened[wi.item_id]).total_seconds() / 60, 1),
+    } for wi in items]
+    pack = [{
+        "boundary_ts": b.isoformat(),
+        "open_items": [{
+            "item_id": wi.item_id, "key": wi.key,
+            "opened_ts": opened[wi.item_id].isoformat(),
+            "minutes_open": round((b - opened[wi.item_id]).total_seconds() / 60, 1),
+            "hazard": any(u.guard.hazard_hits for u in wi.mentions),
+        } for wi in items if open_at(b, opened[wi.item_id], resolved.get(wi.key))],
+    } for b in sorted(boundaries)]
+
     out_dir.mkdir(parents=True, exist_ok=True)
     _write = lambda name, obj: (out_dir / name).write_text(  # noqa: E731
         json.dumps(obj, indent=1, ensure_ascii=False), encoding="utf-8")
@@ -186,6 +213,8 @@ def run_pipeline(job_dir: Path, standards_dir: Path, out_dir: Path, *,
                                 "state": states[wi.item_id]} for wi in items])
     _write("escalations.json", [e.model_dump(mode="json") for e in escalations])
     _write("covered_log.json", [c.model_dump(mode="json") for c in covered_all])
+    _write("digest.json", digest)
+    _write("handover_pack.json", pack)
     _write("costs.json", {"calls": calls, "totals": {
         "calls": len(calls),
         "input_tokens": sum(c["input_tokens"] for c in calls),

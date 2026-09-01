@@ -180,7 +180,9 @@ flowchart LR
 ```
 
 The ledger is live: amendments and dispositions append to it, so "approved
-scope" at 14:00 includes what a human approved at 13:40. Standing rules:
+scope" at 14:00 includes what a human approved at 13:40. Amendments carry
+the approver's name and are revocable, because a wrong amendment is itself
+a suppression path (failure mode 10). Standing rules:
 coarse rows never suppress, ever; low-confidence, high-consequence rows
 queue for a planner's desk review, never for the wellsite.
 
@@ -458,6 +460,12 @@ Ranked by how much they worry me.
    the channel goes quiet and the signal dies. Mitigations: flags attach
    only to work items, and there are no per-person metrics anywhere,
    including internal telemetry.
+10. **A wrong amendment.** An amendment row wrongly appended suppresses
+   every later mention of that identifier until it is revoked, which
+   makes the amendment path itself a suppression path. Mitigations:
+   amendments are ledger rows like any other, carry the approving
+   role's name, are revocable, and sit under the same coverage-decile
+   audit as every other suppression.
 
 ## 7. What I'd validate before committing
 
@@ -536,7 +544,8 @@ notification: the supervisor is already in the channel, so for non-hazard
 drift the alert's job is record creation and a decision before the work
 runs. Certainty can raise interrupt probability, never lower it. Rollout
 is a ladder, shadow then assisted then autonomous, each gate a measured
-number, and the autonomous tier is capped at non-hazard dispositions:
+number; even the top rung only drafts dispositions for a named human to
+confirm, so no emergent item is ever closed by the machine alone and
 stop-work authority stays with people at every rung.
 
 **C. Grounding.** One record, the ledger, one write path. Depth is bought

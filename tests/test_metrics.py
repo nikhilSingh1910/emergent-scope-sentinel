@@ -65,3 +65,21 @@ def test_slo_pins_are_compared_not_just_declared(report):
     assert slo["hazard_page_minutes_after_trigger"] is not None
     assert slo["within_pin"] is True
     assert "replayed" in slo["note"] or "simulated" in slo["note"]
+
+
+@pytest.mark.req("S05")
+def test_intervention_window_is_measured():
+    """The brief's goal sentence as a number: item-open (first caught mention,
+    jb1 08:05) to execution (jb6 14:40) is 6h35m on the frozen data."""
+    import tempfile
+    from pathlib import Path
+
+    from sentinel.metrics import compute_metrics
+    from sentinel.pipeline import run_pipeline
+
+    base = Path(tempfile.mkdtemp())
+    run_pipeline(DATA, STANDARDS, base / "run", backend_name="mock")
+    report = compute_metrics(base / "run", DATA,
+                             EVAL / "gold" / "expectations.jsonl")
+    catch = report["catch"]["job_b_primary_catch"]
+    assert catch["intervention_window_minutes"] == 395.0

@@ -14,7 +14,8 @@
    "first_caught": "jb1",
    "signals_before_catch": 0,
    "wall_clock_minutes_from_first_signal": 0.0,
-   "caught_before_execution": true
+   "caught_before_execution": true,
+   "intervention_window_minutes": 395.0
   }
  },
  "checks": {
