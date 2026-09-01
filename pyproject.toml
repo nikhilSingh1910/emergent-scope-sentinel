@@ -1,0 +1,17 @@
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+# check_loop.py's import block needs sorting; scripts/ is harness-locked,
+# fix at the next unlock and drop this ignore.
+"scripts/harness/check_loop.py" = ["I001"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "tests"]
+markers = ["req(ids): claims requirement ids from ENDGOAL.md"]

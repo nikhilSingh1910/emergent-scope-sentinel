@@ -1,0 +1,15 @@
+__pycache__/
+.claude/settings.local.json
+.DS_Store
+.env
+.harness/
+.pytest_cache/
+.ruff_cache/
+.venv/
+*.egg-info/
+*.pyc
+out/
+design/build/
+out_base/
+report.json
+PROGRESS.md

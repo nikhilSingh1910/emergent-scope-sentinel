@@ -1,0 +1,43 @@
+{
+ "backend": "replay",
+ "headline_eligible": true,
+ "recall": 0.889,
+ "precision_on_noise_half": 0.909,
+ "unscored_flags": [],
+ "hard_key_fraction": 0.727,
+ "honest_misses": [
+  "jb3"
+ ],
+ "catch": {
+  "job_b_primary_catch": {
+   "caught": true,
+   "first_caught": "jb1",
+   "signals_before_catch": 0,
+   "wall_clock_minutes_from_first_signal": 0.0,
+   "caught_before_execution": true
+  }
+ },
+ "checks": {
+  "injection_uncovered": true,
+  "coarse_no_suppress": true,
+  "amendment_closes_loop": true,
+  "hazard_page": true,
+  "handover_escalation": true,
+  "planned_covered": false,
+  "zero_suppression": true
+ },
+ "slo": {
+  "hazard_page_minutes_after_trigger": 0.0,
+  "pin_minutes": 5,
+  "within_pin": true,
+  "note": "replayed timeline: page ts equals trigger message ts by construction"
+ },
+ "usd_estimate": 0.0693,
+ "baseline": {
+  "recall": 0.778,
+  "recall_delta": 0.111,
+  "false_positives_on_noise": [
+   "n07"
+  ]
+ }
+}

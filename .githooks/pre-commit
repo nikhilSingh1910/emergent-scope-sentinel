@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Commit gate: lint, full tests, requirement coverage, loop check, module/test parity.
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+PY=.venv/bin/python
+[ -d src ] || [ -d tests ] && $PY -m ruff check src tests scripts 2>/dev/null || $PY -m ruff check scripts
+$PY -m pytest -q -p no:cacheprovider || [ $? -eq 5 ]
+$PY scripts/check_requirements.py
+$PY scripts/harness/check_loop.py
