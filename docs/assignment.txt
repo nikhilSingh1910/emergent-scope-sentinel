@@ -1,0 +1,26 @@
+Hi Nikhil,
+
+Thank you for your patience. Below is the coding assignment. To give you time to work on it over the weekend, we'll plan a follow-up discussion for a code walkthrough early next week. If you happen to finish sooner, we're happy to schedule the discussion earlier.
+
+Problem Statement
+A large energy operator runs field jobs (workovers, maintenance, remediation). Each job is planned and safety-reviewed up front — approved scope, permits, hazards, controls. Call this the planned scope.
+In the field, crews routinely identify additional work once they've mobilized — a degraded valve to swap, a stuck tool to recover. Call this emergent scope. This added work hasn't been through the same planning, permitting, or hazard review as the planned scope, so new hazards get introduced into the same job without formal visibility.
+Early signals of emergent scope show up in the job's chat channel (assume Microsoft Teams) — free-text, informal, near real time, mixed with operational chatter and noise.
+Goal: design an AI system that detects emerging risk from these signals early enough for humans to intervene. Stop-work authority stays with people.
+Assumptions
+A job package per job (work plan, permits, JSA, controls) available at or before mobilization.
+Enterprise safety standards and historical learnings, shared across jobs.
+One chat channel per job, free-text, near real time.
+Scale: roughly 10²–10³ concurrent jobs.
+
+Part 1 — Design (primary)
+Produce a short design document with architecture diagram for a system that meets the goal above.
+Decide what matters, defend your choices, and tell us what you'd build, what you'd skip, and why. Be explicit about your assumptions, the tradeoffs you considered, the failure modes you're worried about, and what you'd want to validate before committing to the design.
+Part 2 — Implementation (optional, encouraged)
+If you have time, build a focused slice of your design — your choice of what's most interesting to make concrete. Generate your own sample data (a synthetic job package and ~30–80 chat messages, including a planted Job B scenario). 
+We're not looking for a complete system. We're looking for evidence that your design choices survive contact with code.
+Deliverables
+Design doc (PDF)
+Architecture diagram (any format)
+Code repo or zip with README (if Part 2)
+Half a page on what you'd do with another week, and what you chose not to do

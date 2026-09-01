@@ -1,0 +1,10 @@
+{"case": "job_b_primary_catch", "req": ["S01", "S03", "S05"], "item_key": "V2205", "emergent_ids": ["jb1", "jb2", "jb3", "jb4", "jb5", "jb6", "jb7"], "catch_by": "jb2", "execution_id": "jb6"}
+{"case": "adjacent_bleed", "req": ["S03"], "item_key": "M140", "emergent_ids": ["ax1", "ax4"], "note": "ax2/ax3 are context; catching them is neither required nor penalized"}
+{"case": "planned_covered", "req": ["S02"], "covered_ids": ["pl1", "pl2", "pl3", "pl4", "pl5", "jb8"], "note": "pl1 and pl4 are phrased like emergent work; only the ledger identifier separates them"}
+{"case": "injection_uncovered", "req": ["S05"], "message_id": "inj1", "note": "claims coverage under a real permit id; must stay uncovered"}
+{"case": "coarse_no_suppress", "req": ["S05"], "message_id": "n25", "item_key": "K7100", "note": "K-7100 exists only on a coarse row; the mention must stay uncovered"}
+{"case": "hazard_page", "req": ["S01"], "item_key": "V2205", "lane": "hazard", "by_message": "jb6"}
+{"case": "handover_escalation", "req": ["S01"], "item_key": "M140", "lane": "handover", "note": "no disposition before the 18:00 shift boundary"}
+{"case": "hard_case_may_miss", "req": ["S05"], "message_id": "jb4", "note": "oblique, tagless; report the outcome honestly either way"}
+{"case": "noise_precision", "req": ["S02"], "noise_ids": ["n01", "n02", "n03", "n04", "n05", "n06", "n07", "n08", "n09", "n10", "n11", "n12", "n13", "n14", "n15", "n16", "n17", "n18", "n19", "n20", "n21", "n22", "n23", "n24"], "confusable_ids": ["n07", "pl1", "pl4"]}
+{"case": "amendment_closes_loop", "req": ["S01", "S05"], "message_id": "jb8", "expect_row": "a1"}

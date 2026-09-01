@@ -1,0 +1,32 @@
+{
+  "job_id": "JOB-A12-7841",
+  "job_card": "Workover on well A-12: pull and replace charge pump P-310A under work order WO-7841; flush and pressure-test discharge line L-118; permits PTW-2214 (general work) and LOTO-88 (isolation of P-310A).",
+  "shift_end_hours_utc": [6, 18],
+  "rows": [
+    {"row_id": "t1", "artifact_type": "task", "identifiers": ["WO-7841", "P-310A"],
+     "verb": "replace", "equipment_class": "pump",
+     "source": {"doc": "work_plan.md", "page": 1,
+                "span": "Pull and replace charge pump P-310A under WO-7841"},
+     "confidence": 0.95},
+    {"row_id": "t2", "artifact_type": "task", "identifiers": ["WO-7841", "L-118"],
+     "verb": "flush and pressure-test", "equipment_class": "line",
+     "source": {"doc": "work_plan.md", "page": 1,
+                "span": "Flush and pressure-test discharge line L-118"},
+     "confidence": 0.9},
+    {"row_id": "p1", "artifact_type": "permit", "identifiers": ["PTW-2214"],
+     "verb": "authorize general work", "equipment_class": "",
+     "source": {"doc": "permit_PTW-2214.md", "page": 1,
+                "span": "General work permit PTW-2214 for WO-7841 scope"},
+     "confidence": 0.92},
+    {"row_id": "p2", "artifact_type": "permit", "identifiers": ["LOTO-88", "P-310A"],
+     "verb": "isolate", "equipment_class": "pump",
+     "source": {"doc": "permit_LOTO-88.md", "page": 1,
+                "span": "Isolation LOTO-88 covering charge pump P-310A"},
+     "confidence": 0.9},
+    {"row_id": "h1", "artifact_type": "jsa_hazard", "identifiers": ["K-7100"],
+     "verb": "lift", "equipment_class": "crane zone",
+     "source": {"doc": "jsa.md", "page": 2,
+                "span": "Crane operations zone K-7100 (scan quality poor)"},
+     "confidence": 0.45}
+  ]
+}

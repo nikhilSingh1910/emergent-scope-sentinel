@@ -1,0 +1,2 @@
+{"ts": "2026-09-02T15:05:00+00:00", "item_key": "V2205", "actor": "sup1", "action": "acknowledge"}
+{"ts": "2026-09-02T15:30:00+00:00", "item_key": "V2205", "actor": "sup1", "action": "approve_as_amendment", "row": {"row_id": "a1", "artifact_type": "task", "identifiers": ["V-2205"], "verb": "replace", "equipment_class": "valve", "source": {"doc": "amendment", "span": "Supervisor approved replacement of flowline cellar valve V-2205 after JSA review"}, "confidence": 1.0}}

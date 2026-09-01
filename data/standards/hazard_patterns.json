@@ -1,0 +1,35 @@
+{
+  "_source": "Compiled from the operator's safety standards and incident learnings (G02). Synthetic for the slice: verb x equipment-class marker patterns and hazard classes; in production this file is generated offline from the standards corpus, and it only ever adds signal or raises severity, never suppresses.",
+  "change_markers": [
+    "while we're here",
+    "might as well",
+    "swap",
+    "swapping",
+    "replace it",
+    "shot",
+    "weeping",
+    "seat's gone",
+    "grab the spare",
+    "tie in",
+    "tie their",
+    "hook up",
+    "hooked onto",
+    "looking rough",
+    "had it"
+  ],
+  "execution_markers": [
+    "starting on",
+    "doing it now",
+    "cracking the",
+    "breaking containment",
+    "hooked onto"
+  ],
+  "hazard_classes": {
+    "hot_work": ["hot work", "weld", "grind", "grinder"],
+    "stored_energy": ["under pressure", "energized", "live line"],
+    "line_break": ["cracking the flange", "breaking containment", "open the line"],
+    "lifting": ["crane over", "lift over live"],
+    "confined_space": ["confined space", "enter the tank", "into the cellar"]
+  },
+  "tag_regex": "\\b[A-Za-z]{1,4}-?\\d{2,5}[A-Za-z]?\\b"
+}
