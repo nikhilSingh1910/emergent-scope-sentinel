@@ -20,8 +20,7 @@ contact with code."
 Source of the brief: the assignment email, mirrored verbatim at
 `docs/assignment.txt`. **On any doubt,
 the verbatim brief wins over this file's paraphrase.** No hard deadline; a
-code walkthrough is planned early next week, sooner if finished sooner
-(received 2026-08-31 ~17:34 IST by file timestamp).
+code walkthrough is planned early next week, sooner if finished sooner.
 
 ## Givens (the brief's own assumptions; the design must honor them)
 

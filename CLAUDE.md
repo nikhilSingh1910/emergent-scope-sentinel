@@ -29,8 +29,8 @@ Decisions live in **code and the design record**, never only in the model.
 
 ### 1. Reuse before create
 - Before writing ANY new function, client, schema, or module: search this
-  repo first, then any production modules this repo mirrors. Extend or
-  parameterize what exists; do not fork a near-duplicate.
+  repo first. Extend or parameterize what exists; do not fork a
+  near-duplicate.
 - If two functions differ by one parameter's worth of behavior, they must be
   one function.
 - One shared client per external service (one Anthropic client, one DB

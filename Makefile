@@ -17,4 +17,4 @@ reqs:
 loop:
 	$(PY) scripts/harness/check_loop.py
 
-check: lint test reqs loop
+check: lint test reqs

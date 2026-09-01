@@ -5,6 +5,11 @@ Part 2 of the take-home: a focused, runnable slice of the design in
 deliverable. The slice is here as evidence that its choices survive contact
 with code, which is what the brief asked for.
 
+The four deliverables: [design/design.pdf](design/design.pdf) (design
+doc), [design/architecture.png](design/architecture.png) (architecture
+diagram), [design/another_week.pdf](design/another_week.pdf) (the half
+page on another week), and this repo with its README.
+
 **The claim the slice proves:** emergent scope is a diff against approved
 scope, not a property of a message. A per-job scope ledger seeded from the
 job package is the reference; a small model extracts candidates with
@@ -25,6 +30,9 @@ PYTHONPATH=src .venv/bin/python -m sentinel metrics \
   --run out --data data/job_a --gold eval/gold/expectations.jsonl \
   --baseline out_base --out report.json
 ```
+
+(`make setup && make test` does the same setup and test run via the
+Makefile.)
 
 Backends: `mock` is deterministic and offline and exists to run the
 plumbing; the metrics report will not treat mock numbers as headline
@@ -100,9 +108,11 @@ after recording fails loudly. From that file:
 - The intervention window is measured, not asserted: the valve item was
   visible from jb1 (08:05) and execution began at jb6 (14:40), 395
   minutes later, all on the replayed timeline. The digest shows it from
-  08:05; the 18:00 handover pack carries M-140 and K-7100 and not the
-  valve, because the valve was dispositioned at 15:30, which is the
-  system working.
+  08:05. The 18:00 handover pack carries the five still-open items
+  (M-140, K-7100 and the three tagless soft items) and not wi-V2205
+  itself, because that item was dispositioned at 15:30: the system
+  working, with the open soft items being the same clustering gap
+  measured below.
 - **Precision on the noise half: 0.909.** The one false positive is n07,
   the worn hydraulic hose swapped from spares: replacement-in-kind, the
   exact MOC boundary case, and the same call the baseline makes.
@@ -170,6 +180,6 @@ away. The judgment calls, and the mistakes, are mine.
 | `data/job_a/`, `data/standards/` | Synthetic job package, messages, dispositions; standards-derived hazard patterns |
 | `eval/gold/` | Frozen gold expectations; `eval/report_recorded.json` is the number source |
 | `fixtures/replay/` | The recorded live run, 43 fixtures keyed on model + prompt + attempt |
-| `tests/` | 81 tests; TDD throughout |
+| `tests/` | 84 tests; TDD throughout |
 | `docs/` | The verbatim assignment brief and the decision record |
 | `ENDGOAL.md`, `CLAUDE.md`, `scripts/`, `.githooks/` | Working rules and the commit gate (lint, tests, requirement coverage) |
