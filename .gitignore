@@ -13,3 +13,4 @@ design/build/
 out_base/
 report.json
 PROGRESS.md
+.claude/settings.json

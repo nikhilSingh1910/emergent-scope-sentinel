@@ -18,6 +18,6 @@ cat build/arch.mmd >> build/arch.html
 printf '</pre></body></html>\n' >> build/arch.html
 CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 "$CHROME" --headless=new --disable-gpu --hide-scrollbars \
-  --virtual-time-budget=15000 --window-size=3500,760 \
+  --virtual-time-budget=15000 --window-size=3500,940 \
   --screenshot="$PWD/architecture.png" "file://$PWD/build/arch.html" 2>/dev/null
 ls -la architecture.png

@@ -5,9 +5,9 @@ Deviations require Nikhil's explicit sign-off, recorded under Amendments.
 It is append-only and will grow.
 
 Read, in this order, at the start of every session and after every context
-compression: `ENDGOAL.md` (what we are building and for whom), `PROGRESS.md`
-(where we are in the loop), `docs/DECISIONS.md` (settled architecture), the
-test contract if one exists, then this file.
+compression: `ENDGOAL.md` (what we are building and for whom), the local
+build log (where we are in the loop), `docs/DECISIONS.md` (settled
+architecture), the test contract if one exists, then this file.
 
 ## What this repo is
 
@@ -115,7 +115,7 @@ Decisions live in **code and the design record**, never only in the model.
 
 ## The working loop (mandatory for every non-trivial task)
 
-Stages, in order, tracked in `PROGRESS.md`:
+Stages, in order, tracked in the local build log:
 
 1. **PLAN** — restate the endgoal, list every moving part touched, do the
    reuse check, name the requirement ids the task serves.
@@ -138,7 +138,7 @@ artifact, and the adversarial stages attack the design with the endgoal and
 the operational reality (noise, scale, people) in view.
 
 Trivial mechanical edits may skip the ceremony — say so explicitly in
-`PROGRESS.md` when skipping.
+the build log when skipping.
 
 ## Amendments (append-only, dated)
 
@@ -147,5 +147,3 @@ Trivial mechanical edits may skip the ceremony — say so explicitly in
   design-first exercise: rule 11
   names the harness's module-to-test map as an acceptable counterpart, and
   the loop section states how design-only tasks map onto the stages.
-- **2026-09-02** — Scrub only, no rule change: the dates of unrelated
-  earlier builds were removed from the entry above before publication.

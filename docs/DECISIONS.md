@@ -3,7 +3,7 @@
 Each entry: the question, the decision, why, what was rejected. Contested
 choices are argued by advocate subagents with a rebuttal round and an
 adversarial judge; decided by the main session with the full record in view.
-Detail and timestamps: `PROGRESS.md`.
+Detail and timestamps live in the local build log.
 
 ## D001 (2026-08-31) Detection core: tiered scope-conformance against a live per-job ledger
 
@@ -168,9 +168,9 @@ supervisor-shift; paraphrase-invariant recall with a zero-suppression hard
 gate; the soak with a killed subscription and an edited grounded span), all
 under held-out, supervisor-authored plants and mute-rate instrumentation
 from shadow day one. Reuse lineage, stated for the design doc: guards-first
-tiering and the human loop are the email-triage pipeline's skeleton; ledger
-grounding, deterministic-only suppression and planted-trap evals are the
-RFP drafter's discipline; the rollout ladder is standing doctrine. The
+tiering with a human loop, ledger grounding, deterministic-only suppression
+and planted-trap evals are patterns proven in earlier production work; the
+rollout ladder is standing doctrine. The
 genuinely novel components — the work-item fold and the
 disposition-before-execution loop — are where Part 2 should aim.
 
@@ -178,8 +178,8 @@ disposition-before-execution loop — are where Part 2 should aim.
 
 After Nikhil challenged whether the debate had used the web, ML best
 practice and our accumulated project experience, three cited research
-rounds ran (grounding/retrieval; streaming-detection ML incl. our
-production repos; HSE domain prior art). Amendments below; sources in the
+rounds ran (grounding/retrieval; streaming-detection ML incl. earlier
+production code; HSE domain prior art). Amendments below; sources in the
 session record. Where rounds disagreed, the main session ruled.
 
 **D001 amendments.**
@@ -195,7 +195,7 @@ session record. Where rounds disagreed, the main session ruled.
 - [adopt] The T1 model call stays (spans are the product); a fine-tuned
   encoder classifier is a later cost optimisation trained from shadow
   labels — an addition, never a replacement.
-- [adopt] From a production email-triage pipeline: "use the model to extract
+- [adopt] A production-proven rule: "use the model to extract
   fields, use code to score them" — T2's diff score is deterministic
   weighted signals with per-signal `{points, max, why}`, and **gaps beat
   confidence**: a missing permit or control routes to escalation

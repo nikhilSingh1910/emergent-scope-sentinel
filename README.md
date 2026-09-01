@@ -164,3 +164,4 @@ away. The judgment calls, and the mistakes, are mine.
 | `fixtures/replay/` | The recorded live run, 43 fixtures keyed on model + prompt + attempt |
 | `tests/` | 81 tests; TDD throughout |
 | `docs/` | The verbatim assignment brief and the decision record |
+| `ENDGOAL.md`, `CLAUDE.md`, `scripts/`, `.githooks/` | Working rules and the commit gate (lint, tests, requirement coverage) |
